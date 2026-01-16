@@ -21,7 +21,6 @@ class GameViewModel : ViewModel() {
         private set
 
     var puntuacion by mutableIntStateOf(0)
-        private set
 
     var tiempoRestante by mutableFloatStateOf(100f)
         private set
