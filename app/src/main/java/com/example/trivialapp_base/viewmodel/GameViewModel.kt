@@ -11,8 +11,7 @@ import com.example.trivialapp_base.model.Pregunta
 
 class GameViewModel : ViewModel() {
     private var preguntasPartida: List<Pregunta> = emptyList()
-    var indicePreguntaActual by mutableIntStateOf(0)
-        private set
+    var indicePreguntaActual by mutableIntStateOf(1)
 
     var preguntaActual by mutableStateOf<Pregunta?>(null)
         private set

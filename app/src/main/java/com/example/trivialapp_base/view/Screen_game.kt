@@ -23,14 +23,13 @@ import com.example.trivialapp_base.viewmodel.GameViewModel
 @Composable
 fun GameScreen(navController: NavController, viewModel: GameViewModel) {
     val currentQuestion = ProveedorPreguntas.obtenerPreguntas().random()
-
     Box(
         modifier = Modifier.fillMaxSize().background(Color.Cyan)) {
         Column(
             modifier = Modifier.fillMaxSize()
         ) {
             Text(
-                text = currentQuestion.pregunta
+                text = viewModel.indicePreguntaActual.toString() + ". " + currentQuestion.pregunta
             )
 
             Box(
@@ -41,24 +40,50 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
                         Button(onClick = { if (currentQuestion.respuesta1==currentQuestion.respuestaCorrecta) {
                             viewModel.puntuacion++
                         }
+                            if (viewModel.indicePreguntaActual==10){
+                                navController.navigate(Routes.ResultScreen.route)
+                            }
+                            else{
+                                viewModel.indicePreguntaActual++
+                            }
 
                         } ) { Text(currentQuestion.respuesta1) }
                         Button(onClick = { if (currentQuestion.respuesta2==currentQuestion.respuestaCorrecta)
                         {
                             viewModel.puntuacion++
-                        } } ) { Text(currentQuestion.respuesta2) }
+                        }
+                            if (viewModel.indicePreguntaActual==10){
+                                navController.navigate(Routes.ResultScreen.route)
+                            }
+                            else{
+                                viewModel.indicePreguntaActual++
+                            }
+                        } ) { Text(currentQuestion.respuesta2) }
                     }
                     Row() {
                         Button(onClick = { if (currentQuestion.respuesta3==currentQuestion.respuestaCorrecta)
                         {
                             viewModel.puntuacion++
-                        }} ) { Text(currentQuestion.respuesta3) }
+                        }
+                            if (viewModel.indicePreguntaActual==10){
+                                navController.navigate(Routes.ResultScreen.route)
+                            }
+                            else{
+                                viewModel.indicePreguntaActual++
+                            }
+                        } ) { Text(currentQuestion.respuesta3) }
                         Button(onClick = { if (currentQuestion.respuesta4==currentQuestion.respuestaCorrecta)
                         {
                             viewModel.puntuacion++
-                        } } ) { Text(currentQuestion.respuesta4) }
+                        }
+                            if (viewModel.indicePreguntaActual==10){
+                                navController.navigate(Routes.ResultScreen.route)
+                            }
+                            else{
+                                viewModel.indicePreguntaActual++
+                            }
+                        } ) { Text(currentQuestion.respuesta4) }
                     }
-                    Text(viewModel.puntuacion.toString())
                 }
             }
         }
