@@ -91,8 +91,6 @@ fun MenuScreen(navController: NavController, viewModel: GameViewModel) {
                         .width(300.dp)
                         .padding(horizontal = 30.dp, vertical = 20.dp)
                         .border(width = 2.dp, color = Black, shape = RoundedCornerShape(size = 50.dp))
-
-
                 )
                 DropdownMenu(
                     expanded = expanded,
