@@ -1,8 +1,6 @@
 package com.example.trivialapp_base.view
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,35 +14,39 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.modifier.modifierLocalOf
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.example.trivialapp_base.R
 import com.example.trivialapp_base.Routes
 import com.example.trivialapp_base.model.ProveedorPreguntas
 import com.example.trivialapp_base.viewmodel.GameViewModel
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.time.delay
+
+
 
 @Composable
 fun GameScreen(navController: NavController, viewModel: GameViewModel) {
     val currentQuestion = remember(viewModel.indicePreguntaActual) {
         ProveedorPreguntas.obtenerPreguntas().random()
     }
+    val context = LocalContext.current
     Box(
-        modifier = Modifier.fillMaxSize().background(Color.White)) {
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White)) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
@@ -53,13 +55,13 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
                 .padding(10.dp)
         ) {
             TimeCounter()
-            /*
-            Image(
-                painter = painterResource(id = R.pokesprites.Random()),
-                contentDescription = "Logo",
+
+            AsyncImage(
+                model = "file:///android_asset/laprasgigantamax.gif",
+                contentDescription = "pokemon",
                 modifier = Modifier
-                    .size(380.dp)
-            )*/
+                    .size(300.dp)
+            )
             Text(
                 text = viewModel.indicePreguntaActual.toString() + ". " + currentQuestion.pregunta,
                 fontWeight = FontWeight.SemiBold,
