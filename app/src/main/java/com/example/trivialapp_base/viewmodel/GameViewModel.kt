@@ -1,5 +1,6 @@
 package com.example.trivialapp_base.viewmodel
 
+import android.R
 import android.os.CountDownTimer
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
@@ -29,7 +30,9 @@ class GameViewModel : ViewModel() {
 
     var dificultadSeleccionada by mutableStateOf("Facil")
         private set
-
+    var extract by mutableStateOf(false)
+        private set
+    var difficulty by mutableStateOf("")
     private var timer: CountDownTimer? = null
     private val TIEMPO_POR_PREGUNTA = 10000L // 10 segons
 
