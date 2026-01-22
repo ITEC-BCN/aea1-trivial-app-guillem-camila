@@ -27,12 +27,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import coil.ImageLoader
 import coil.compose.AsyncImage
 import com.example.trivialapp_base.Routes
 import com.example.trivialapp_base.model.ProveedorPreguntas
 import com.example.trivialapp_base.viewmodel.GameViewModel
 import kotlinx.coroutines.delay
-
+import android.os.Build
+import coil.request.ImageRequest
 
 
 @Composable
@@ -40,6 +42,7 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
     val currentQuestion = remember(viewModel.indicePreguntaActual) {
         ProveedorPreguntas.obtenerPreguntas().random()
     }
+    val context = LocalContext.current
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -54,11 +57,12 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
             TimeCounter()
 
             AsyncImage(
-                model = "file:///android_asset/laprasgigantamax.gif",
-                contentDescription = "pokemon",
+                model = ImageRequest
+                    .Builder(context)
+                    .data("file:///android_asset/laprasgigantamax.gif")
+                    .build(), contentDescription = "pokemon",
                 modifier = Modifier
-                    .size(300.dp)
-            )
+                    .size(300.dp) )
             Text(
                 text = viewModel.indicePreguntaActual.toString() + ". " + currentQuestion.pregunta,
                 fontWeight = FontWeight.SemiBold,
