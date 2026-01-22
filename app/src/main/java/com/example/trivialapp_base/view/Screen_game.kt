@@ -23,6 +23,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.modifier.modifierLocalOf
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -39,34 +40,39 @@ import kotlinx.coroutines.time.delay
 
 @Composable
 fun GameScreen(navController: NavController, viewModel: GameViewModel) {
-    val currentQuestion = ProveedorPreguntas.obtenerPreguntas().random()
+    val currentQuestion = remember(viewModel.indicePreguntaActual) {
+        ProveedorPreguntas.obtenerPreguntas().random()
+    }
     Box(
         modifier = Modifier.fillMaxSize().background(Color.White)) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
-            modifier = Modifier.fillMaxSize()
-
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(10.dp)
         ) {
             TimeCounter()
+            /*
+            Image(
+                painter = painterResource(id = R.pokesprites.Random()),
+                contentDescription = "Logo",
+                modifier = Modifier
+                    .size(380.dp)
+            )*/
             Text(
                 text = viewModel.indicePreguntaActual.toString() + ". " + currentQuestion.pregunta,
                 fontWeight = FontWeight.SemiBold,
                 fontStyle = FontStyle.Italic,
-                fontSize = 40.sp,
+                fontSize = 30.sp,
                 color = Color.Black,
                 textAlign = TextAlign.Center,
                 lineHeight = 40.sp,
                 modifier = Modifier
                     .fillMaxWidth()
+                    .padding(10.dp)
             )
-            /* Poner imagenes chulas :b
-            Image(
-                painter = painterResource(id = R.drawable.trivialicontext),
-                contentDescription = "Logo",
-                modifier = Modifier
-                    .size(380.dp)
-            )*/
+
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -78,10 +84,13 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(30.dp),
+                            .padding(10.dp),
                         horizontalArrangement = Arrangement.Center
                     ) {
-                        Button(onClick = { if (currentQuestion.respuesta1==currentQuestion.respuestaCorrecta) {
+                        Button(
+                            modifier = Modifier
+                                .padding(horizontal = 3.dp, vertical = 0.dp),
+                            onClick = { if (currentQuestion.respuesta1==currentQuestion.respuestaCorrecta) {
                             viewModel.puntuacion++
                         }
                             if (viewModel.indicePreguntaActual==10){
@@ -93,11 +102,14 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
 
                         } ) {
                             Text(currentQuestion.respuesta1,
-                                fontSize = 30.sp,
+                                fontSize = 17.sp,
                                 lineHeight = 40.sp
                             )
                         }
-                        Button(onClick = { if (currentQuestion.respuesta2==currentQuestion.respuestaCorrecta)
+                        Button(
+                            modifier = Modifier
+                                .padding(horizontal = 3.dp, vertical = 0.dp),
+                            onClick = { if (currentQuestion.respuesta2==currentQuestion.respuestaCorrecta)
                         {
                             viewModel.puntuacion++
                         }
@@ -109,17 +121,20 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
                             }
                         } ) {
                             Text(currentQuestion.respuesta2,
-                                fontSize = 30.sp,
+                                fontSize = 17.sp,
                                 lineHeight = 40.sp
                         ) }
                     }
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(20.dp) ,
+                            .padding(10.dp) ,
                         horizontalArrangement = Arrangement.Center
                     ) {
-                        Button(onClick = { if (currentQuestion.respuesta3==currentQuestion.respuestaCorrecta)
+                        Button(
+                            modifier = Modifier
+                                .padding(horizontal = 3.dp, vertical = 0.dp),
+                            onClick = { if (currentQuestion.respuesta3==currentQuestion.respuestaCorrecta)
                         {
                             viewModel.puntuacion++
                         }
@@ -131,11 +146,14 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
                             }
                         } ) {
                             Text(currentQuestion.respuesta3,
-                                fontSize = 30.sp,
+                                fontSize = 17.sp,
                                 lineHeight = 40.sp
                                 ) }
 
-                        Button(onClick = { if (currentQuestion.respuesta4==currentQuestion.respuestaCorrecta)
+                        Button(
+                            modifier = Modifier
+                                .padding(horizontal = 3.dp, vertical = 0.dp),
+                            onClick = { if (currentQuestion.respuesta4==currentQuestion.respuestaCorrecta)
                         {
                             viewModel.puntuacion++
                         }
@@ -147,7 +165,7 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
                             }
                         } ) {
                             Text(currentQuestion.respuesta4,
-                                fontSize = 30.sp,
+                                fontSize = 17.sp,
                                 lineHeight = 40.sp
                                 ) }
                     }
@@ -164,7 +182,11 @@ fun TimeCounter() {
         while (timeLeft > 0) {
             delay(1000L)
             timeLeft -= 1 } }
+
     Text(
         text = if (timeLeft > 0) "$timeLeft" else "You have no time left",
         color = Color.Black,
-        fontSize = 30.sp ) }
+        fontSize =(30.sp),
+        modifier = Modifier
+            .padding(20.dp))
+}
