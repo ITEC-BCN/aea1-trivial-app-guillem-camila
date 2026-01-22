@@ -14,9 +14,12 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -31,6 +34,8 @@ import com.example.trivialapp_base.R
 import com.example.trivialapp_base.Routes
 import com.example.trivialapp_base.model.ProveedorPreguntas
 import com.example.trivialapp_base.viewmodel.GameViewModel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.time.delay
 
 @Composable
 fun GameScreen(navController: NavController, viewModel: GameViewModel) {
@@ -43,6 +48,7 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
             modifier = Modifier.fillMaxSize()
 
         ) {
+            TimeCounter()
             Text(
                 text = viewModel.indicePreguntaActual.toString() + ". " + currentQuestion.pregunta,
                 fontWeight = FontWeight.SemiBold,
@@ -50,6 +56,7 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
                 fontSize = 40.sp,
                 color = Color.Black,
                 textAlign = TextAlign.Center,
+                lineHeight = 40.sp,
                 modifier = Modifier
                     .fillMaxWidth()
             )
@@ -71,7 +78,8 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(30.dp)
+                            .padding(30.dp),
+                        horizontalArrangement = Arrangement.Center
                     ) {
                         Button(onClick = { if (currentQuestion.respuesta1==currentQuestion.respuestaCorrecta) {
                             viewModel.puntuacion++
@@ -85,7 +93,8 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
 
                         } ) {
                             Text(currentQuestion.respuesta1,
-                                fontSize = 30.sp
+                                fontSize = 30.sp,
+                                lineHeight = 40.sp
                             )
                         }
                         Button(onClick = { if (currentQuestion.respuesta2==currentQuestion.respuestaCorrecta)
@@ -100,10 +109,16 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
                             }
                         } ) {
                             Text(currentQuestion.respuesta2,
-                                fontSize = 30.sp
+                                fontSize = 30.sp,
+                                lineHeight = 40.sp
                         ) }
                     }
-                    Row() {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(20.dp) ,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
                         Button(onClick = { if (currentQuestion.respuesta3==currentQuestion.respuestaCorrecta)
                         {
                             viewModel.puntuacion++
@@ -116,8 +131,10 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
                             }
                         } ) {
                             Text(currentQuestion.respuesta3,
-                                fontSize = 30.sp
+                                fontSize = 30.sp,
+                                lineHeight = 40.sp
                                 ) }
+
                         Button(onClick = { if (currentQuestion.respuesta4==currentQuestion.respuestaCorrecta)
                         {
                             viewModel.puntuacion++
@@ -130,7 +147,8 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
                             }
                         } ) {
                             Text(currentQuestion.respuesta4,
-                                fontSize = 30.sp
+                                fontSize = 30.sp,
+                                lineHeight = 40.sp
                                 ) }
                     }
                 }
@@ -139,3 +157,14 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
 
     }
 }
+@Composable
+fun TimeCounter() {
+    var timeLeft by remember { mutableStateOf(10) }
+    LaunchedEffect(timeLeft) {
+        while (timeLeft > 0) {
+            delay(1000L)
+            timeLeft -= 1 } }
+    Text(
+        text = if (timeLeft > 0) "$timeLeft" else "You have no time left",
+        color = Color.Black,
+        fontSize = 30.sp ) }

@@ -64,6 +64,7 @@ fun MenuScreen(navController: NavController, viewModel: GameViewModel) {
                     modifier = Modifier
                         .size(380.dp)
                 )
+
                 Button(
                     onClick = { navController.navigate(Routes.GameScreen.route)},
                     modifier = Modifier
