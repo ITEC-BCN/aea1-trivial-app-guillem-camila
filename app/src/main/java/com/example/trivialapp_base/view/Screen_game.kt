@@ -28,8 +28,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
-import coil.request.ImageRequest
-import com.example.trivialapp_base.R
 import com.example.trivialapp_base.Routes
 import com.example.trivialapp_base.model.ProveedorPreguntas
 import com.example.trivialapp_base.viewmodel.GameViewModel
@@ -42,7 +40,6 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
     val currentQuestion = remember(viewModel.indicePreguntaActual) {
         ProveedorPreguntas.obtenerPreguntas().random()
     }
-    val context = LocalContext.current
     Box(
         modifier = Modifier
             .fillMaxSize()
