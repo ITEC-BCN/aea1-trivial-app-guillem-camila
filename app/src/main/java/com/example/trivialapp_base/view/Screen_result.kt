@@ -59,14 +59,17 @@ fun ResultScreen(navController: NavController, viewModel: GameViewModel) {
                     .padding(20.dp)
             )
             Button(
-                onClick = { navController.navigate(Routes.MenuScreen.route)},){
+                onClick = {
+                    navController.navigate(Routes.MenuScreen.route)},){
                 Text(
                     text = "Menu",
                     fontSize = 30.sp
                 )
             }
             Button(
-                onClick = {navController.navigate(Routes.MenuScreen.route)}
+                onClick = {
+                    navController.navigate(Routes.MenuScreen.route)
+                }
             ) {
                 Text(
                     text = "Share",

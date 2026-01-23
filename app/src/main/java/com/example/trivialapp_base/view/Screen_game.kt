@@ -29,6 +29,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.trivialapp_base.R
 import com.example.trivialapp_base.Routes
@@ -40,6 +42,7 @@ import kotlinx.coroutines.time.delay
 @Composable
 fun GameScreen(navController: NavController, viewModel: GameViewModel) {
     val currentQuestion = ProveedorPreguntas.obtenerPreguntas().random()
+
     Box(
         modifier = Modifier.fillMaxSize().background(Color.White)) {
         Column(
@@ -48,7 +51,7 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
             modifier = Modifier.fillMaxSize()
 
         ) {
-            TimeCounter()
+            TimeCounter(viewModel)
             Text(
                 text = viewModel.indicePreguntaActual.toString() + ". " + currentQuestion.pregunta,
                 fontWeight = FontWeight.SemiBold,
@@ -60,6 +63,9 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
                 modifier = Modifier
                     .fillMaxWidth()
             )
+            if (viewModel.indicePreguntaActual>10){
+                navController.navigate(Routes.ResultScreen.route)
+            }
             /* Poner imagenes chulas :b
             Image(
                 painter = painterResource(id = R.drawable.trivialicontext),
@@ -89,6 +95,7 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
                             }
                             else{
                                 viewModel.indicePreguntaActual++
+
                             }
 
                         } ) {
@@ -154,17 +161,22 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
                 }
             }
         }
-
     }
 }
 @Composable
-fun TimeCounter() {
+fun TimeCounter(viewModel: GameViewModel) {
     var timeLeft by remember { mutableStateOf(10) }
     LaunchedEffect(timeLeft) {
         while (timeLeft > 0) {
             delay(1000L)
-            timeLeft -= 1 } }
+            timeLeft -= 1 }
+        if(timeLeft == 0){
+            viewModel.indicePreguntaActual++
+            timeLeft=10
+        }
+    }
     Text(
         text = if (timeLeft > 0) "$timeLeft" else "You have no time left",
         color = Color.Black,
-        fontSize = 30.sp ) }
+        fontSize = 30.sp )
+}

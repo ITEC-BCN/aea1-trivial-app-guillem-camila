@@ -31,7 +31,7 @@ class GameViewModel : ViewModel() {
         private set
 
     private var timer: CountDownTimer? = null
-    private val TIEMPO_POR_PREGUNTA = 10000L // 10 segons
+    var tiempoPorPregunta = 10L // 10 segons
 
     fun setDificultad(dificultad: String) {
         dificultadSeleccionada = dificultad // Sense .value!
