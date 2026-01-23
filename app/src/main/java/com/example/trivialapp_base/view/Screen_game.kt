@@ -35,6 +35,9 @@ import com.example.trivialapp_base.viewmodel.GameViewModel
 import kotlinx.coroutines.delay
 import android.os.Build
 import coil.request.ImageRequest
+import com.example.trivialapp_base.R
+import coil.decode.GifDecoder
+import coil.decode.ImageDecoderDecoder
 
 
 @Composable
@@ -43,6 +46,43 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
         ProveedorPreguntas.obtenerPreguntas().random()
     }
     val context = LocalContext.current
+    val imageLoader = rememberGifImageLoader()
+    val gifs = listOf(
+        R.raw.mesprit,
+        R.raw.laprasgigantamax,
+        R.raw.mew,
+        R.raw.celebi,
+        R.raw.aegislash,
+        R.raw.blastoisegigantamax,
+        R.raw.chandelure,
+        R.raw.sylveon,
+        R.raw.charizardgigantamaxs,
+        R.raw.reuniclus,
+        R.raw.cherubi,
+        R.raw.dragapult,
+        R.raw.dreepy,
+        R.raw.pikachugigantamax,
+        R.raw.duosions,
+        R.raw.dusknoirs,
+        R.raw.dwebbles,
+        R.raw.eeveegigantamaxs,
+        R.raw.ninetalesalolas,
+        R.raw.zekroms,
+        R.raw.necrozmadawnwingss,
+        R.raw.eternatuss,
+        R.raw.moltresgalar,
+        R.raw.mimikyu,
+        R.raw.milotic,
+        R.raw.lunala,
+        R.raw.leafeon,
+        R.raw.kirlia,
+        R.raw.jirachi,
+        R.raw.haunter,
+        R.raw.gengargigantamax,
+        R.raw.gardevoir
+    )
+    var randomGif = remember(viewModel.indicePreguntaActual) { gifs.random() }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -59,8 +99,9 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
             AsyncImage(
                 model = ImageRequest
                     .Builder(context)
-                    .data("file:///android_asset/laprasgigantamax.gif")
+                    .data("android.resource://${context.packageName}/${randomGif}")
                     .build(), contentDescription = "pokemon",
+                imageLoader = imageLoader,
                 modifier = Modifier
                     .size(300.dp) )
             Text(
@@ -192,4 +233,20 @@ fun TimeCounter() {
         fontSize =(30.sp),
         modifier = Modifier
             .padding(20.dp))
+}
+
+@Composable
+fun rememberGifImageLoader(): ImageLoader {
+    val context = LocalContext.current
+    return remember {
+        ImageLoader.Builder(context)
+            .components {
+                if (Build.VERSION.SDK_INT >= 28) {
+                    add(ImageDecoderDecoder.Factory())
+                } else {
+                    add(GifDecoder.Factory())
+                }
+            }
+            .build()
+    }
 }
