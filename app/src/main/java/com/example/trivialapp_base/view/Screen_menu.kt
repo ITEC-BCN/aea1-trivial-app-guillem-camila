@@ -3,6 +3,7 @@ package com.example.trivialapp_base.view
 import android.widget.Button
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -11,8 +12,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderState
 import androidx.compose.material3.Text
@@ -29,27 +34,21 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.trivialapp_base.R
 import com.example.trivialapp_base.Routes
-import com.example.trivialapp_base.model.Pregunta
-import com.example.trivialapp_base.model.ProveedorPreguntas
 import com.example.trivialapp_base.viewmodel.GameViewModel
-
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.Color.Companion.Black
+import androidx.compose.ui.text.TextStyle
 
 
 @Composable
 fun MenuScreen(navController: NavController, viewModel: GameViewModel) {
-    val preguntas = mutableListOf<Pregunta>(            Pregunta("¿Cuántos PP como máximo puede tener Hiperrayo?", "Movimientos", "Facil", "5", "16", "8", "10", "8"),
-        Pregunta("¿Cuánta potencia base tiene erupción?", "Movimientos", "Facil", "100", "120", "150", "200", "150"),
-        Pregunta("¿Qué pokemon no tiene debilidades en la práctica?", "Tabla de Tipos", "Medio", "Rotom Ventilador", "Zoroark de Hisui", "Eelektross", "Spiritomb", "Eelektross"),
-        Pregunta("¿Cuánto aumentan la potencia de los movimientos de su tipo los campos psíquico, eléctrico y de hierba?", "Movimientos", "Medio", "Un 10%", "Un 30%", "Un 50%", "Un 25%", "Un 30%"),
-        Pregunta("¿Qué hace el tera estelar?", "Generaciones", "Dificil", "Potencia un movimiento de cada tipo una vez", "Cambia el tipo defensivo", "Hace que teraexplosión siempre haga supereficaz", "Potencia solo los movimientos de tipo estelar", "Potencia un movimiento de cada tipo una vez"),
-        Pregunta("¿Qué grupo de pokemon no estaba en espada y escudo?", "Generaciones", "Medio", "Los Regi", "Los Ultraentes", "Arceus y Darkrai", "Los Iniciales de Séptima Generación", "Arceus y Darkrai"),
-        Pregunta("¿Qué pokemon de tipo bicho es el único que ha ganado el mundial?", "VGC", "Dificil", "Accelgor", "Volcarona", "Escavalier", "Scizor", "Escavalier"),
-        Pregunta("¿Cuál de estos pokemon no tiene la habilidad intimidación?", "Características", "Facil", "Incineroar", "Haxorus", "Luxray", "Mawile", "Haxorus"),
-        Pregunta("¿Cuál de estos pokemon no ha ganado ningún torneo oficial de VGC?", "VGC", "Medio", "Clefairy", "Eevee", "Pikachu", "Cottonee", "Pikachu"),
-        Pregunta("¿Cuál de estos pokemon no evoluciona?", "Características", "Medio", "Carbink", "Dunsparce", "Poltchageist", "Sinistea", "Carbink"),
-        Pregunta("¿Cuál de estos pokemon ha ganado más mundiales en VGC Masters Division?", "VGC", "Medio", "Cresselia", "Kyogre", "Heatran", "Urshifu", "Cresselia"),
-        Pregunta("¿De qué tipo es Mega Kangaskhan?", "Tabla de Tipos", "Medio", "Normal", "Lucha", "Normal/Acero", "Normal/Lucha", "Normal")
-    )
+    var expanded: Boolean by remember { mutableStateOf(false) }
+    var difficulty: String by remember { mutableStateOf("") }
+
     Column(modifier = Modifier.fillMaxSize().background(Color.Cyan)) {
         Box(
             modifier = Modifier
@@ -63,12 +62,6 @@ fun MenuScreen(navController: NavController, viewModel: GameViewModel) {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                viewModel.indicePreguntaActual=1
-                viewModel.puntuacion=0
-                ProveedorPreguntas.obtenerPreguntas().forEach {
-                    ProveedorPreguntas.obtenerPreguntas().remove(it)
-                }
-                ProveedorPreguntas.obtenerPreguntas().addAll(preguntas)
                 Text(
                     text ="PokeTrivial",
                     fontSize = 50.sp,
@@ -85,6 +78,40 @@ fun MenuScreen(navController: NavController, viewModel: GameViewModel) {
                     modifier = Modifier
                         .size(380.dp)
                 )
+
+                OutlinedTextField(
+                    value = difficulty,
+                    onValueChange = {difficulty = it},
+                    enabled = false,
+                    readOnly = true,
+                    label = { Text(text = "Difficulty") },
+                    textStyle = TextStyle(fontWeight = FontWeight.SemiBold),
+                    modifier = Modifier
+                        .clickable{expanded = true}
+                        .width(300.dp)
+                        .padding(horizontal = 30.dp, vertical = 20.dp)
+                        .border(width = 2.dp, color = Black, shape = RoundedCornerShape(size = 50.dp))
+                )
+                DropdownMenu(
+                    expanded = expanded,
+                    onDismissRequest = { expanded = false },
+                    modifier = Modifier
+                        .width(300.dp)
+                        .padding(5.dp)
+                ) {
+                    DropdownMenuItem(
+                        text = { Text("Easy") },
+                        onClick = {},
+                    )
+                    DropdownMenuItem(
+                        text = { Text("Medium")},
+                        onClick = {}
+                    )
+                    DropdownMenuItem(
+                        text = { Text("Hard")},
+                        onClick = {}
+                    )
+                }
 
                 Button(
                     onClick = { navController.navigate(Routes.GameScreen.route)},
