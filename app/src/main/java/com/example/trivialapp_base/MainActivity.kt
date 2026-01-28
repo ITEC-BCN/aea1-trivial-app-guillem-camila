@@ -41,16 +41,8 @@ class MainActivity : ComponentActivity() {
                     composable(Routes.ResultScreen.route) { ResultScreen(navigationController, myViewModel) }
                     composable(Routes.SplashScreen.route) { SplashScreen(navigationController) }
                 }
-
-
                 // Instanciamos el ViewModel una vez
-
-
-
                 // Definición de rutas y navegación
-
-
-
             }
         }
     }

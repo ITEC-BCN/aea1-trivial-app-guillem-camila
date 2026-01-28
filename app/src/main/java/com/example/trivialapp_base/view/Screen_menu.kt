@@ -49,7 +49,11 @@ fun MenuScreen(navController: NavController, viewModel: GameViewModel) {
     var expanded: Boolean by remember { mutableStateOf(false) }
     var difficulty: String by remember { mutableStateOf("") }
 
-    Column(modifier = Modifier.fillMaxSize().background(Color.Cyan)) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Cyan)
+    ) {
         Box(
             modifier = Modifier
                 .weight(1f)
@@ -70,7 +74,6 @@ fun MenuScreen(navController: NavController, viewModel: GameViewModel) {
                     color = Color.Black,
                     modifier = Modifier
                         .padding(20.dp)
-
                 )
                 Image(
                     painter = painterResource(id = R.drawable.trivialicontext),
@@ -101,29 +104,37 @@ fun MenuScreen(navController: NavController, viewModel: GameViewModel) {
                 ) {
                     DropdownMenuItem(
                         text = { Text("Easy") },
-                        onClick = {},
+                        onClick = {
+                            difficulty = "Facil"
+                            viewModel.setDificultad("Facil")
+                        },
                     )
                     DropdownMenuItem(
                         text = { Text("Medium")},
-                        onClick = {}
+                        onClick = {
+                            difficulty = "Media"
+                            viewModel.setDificultad("Media")}
                     )
                     DropdownMenuItem(
                         text = { Text("Hard")},
-                        onClick = {}
+                        onClick = {
+                            difficulty = "Dificil"
+                            viewModel.setDificultad("Dificil")}
                     )
                 }
 
                 Button(
-                    onClick = { navController.navigate(Routes.GameScreen.route)},
-                    modifier = Modifier
-                    .padding(50.dp) ) {
-
-                        Text(
-                            text = "New Game",
-                            fontSize = 30.sp,
-                            fontWeight = FontWeight.SemiBold
-                            )
-                }
+                    onClick = {
+                        viewModel.iniciarJuego()
+                        navController.navigate(Routes.GameScreen.route)
+                    },
+                    modifier = Modifier.padding(50.dp)
+                ) {
+                Text(
+                    text = "New Game",
+                    fontSize = 30.sp,
+                    fontWeight = FontWeight.SemiBold
+                ) }
 
             }
 

@@ -43,8 +43,8 @@ fun ResultScreen(navController: NavController, viewModel: GameViewModel) {
                 .fillMaxWidth()
                 .padding(20.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center) {
-
+            verticalArrangement = Arrangement.Center
+        ) {
             Text(
                 text = viewModel.puntuacion.toString()+"/10",
                 textAlign = TextAlign.Center,
@@ -67,8 +67,10 @@ fun ResultScreen(navController: NavController, viewModel: GameViewModel) {
             Button(
                 modifier = Modifier
                     .padding(20.dp),
-                onClick = { navController.navigate(Routes.MenuScreen.route)},){
-
+                onClick = {
+                    navController.navigate(Routes.MenuScreen.route)
+                }
+            ){
                 Text(
                     text = "Menu",
                     fontSize = 30.sp
@@ -78,7 +80,9 @@ fun ResultScreen(navController: NavController, viewModel: GameViewModel) {
             Button(
                 modifier = Modifier
                     .padding(20.dp),
-                onClick = {navController.navigate(Routes.MenuScreen.route)}
+                onClick = {
+                    navController.navigate(Routes.MenuScreen.route)
+                }
             ) {
                 Text(
                     text = "Share",
@@ -86,9 +90,5 @@ fun ResultScreen(navController: NavController, viewModel: GameViewModel) {
                 )
             }
         }
-
-
-
     }
-
 }

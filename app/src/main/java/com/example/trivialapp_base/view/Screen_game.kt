@@ -38,6 +38,8 @@ import coil.request.ImageRequest
 import com.example.trivialapp_base.R
 import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 
 @Composable
@@ -46,59 +48,31 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
         ProveedorPreguntas.obtenerPreguntas().random()
     }
     val context = LocalContext.current
-    val imageLoader = rememberGifImageLoader()
-    val gifs = listOf(
-        R.raw.mesprit,
-        R.raw.laprasgigantamax,
-        R.raw.mew,
-        R.raw.celebi,
-        R.raw.aegislash,
-        R.raw.blastoisegigantamax,
-        R.raw.chandelure,
-        R.raw.sylveon,
-        R.raw.charizardgigantamaxs,
-        R.raw.reuniclus,
-        R.raw.cherubi,
-        R.raw.dragapult,
-        R.raw.dreepy,
-        R.raw.pikachugigantamax,
-        R.raw.duosions,
-        R.raw.dusknoirs,
-        R.raw.dwebbles,
-        R.raw.eeveegigantamaxs,
-        R.raw.ninetalesalolas,
-        R.raw.zekroms,
-        R.raw.necrozmadawnwingss,
-        R.raw.eternatuss,
-        R.raw.moltresgalar,
-        R.raw.mimikyu,
-        R.raw.milotic,
-        R.raw.lunala,
-        R.raw.leafeon,
-        R.raw.kirlia,
-        R.raw.jirachi,
-        R.raw.haunter,
-        R.raw.gengargigantamax,
-        R.raw.gardevoir
-    )
-    var randomGif = remember(viewModel.indicePreguntaActual) { gifs.random() }
+    val imageLoader = remember {
+        ImageLoader.Builder(context) .components {
+            add(GifDecoder.Factory())
+        } .build()
+    }
+
+    var randomGif = remember(viewModel.indicePreguntaActual) { viewModel.gifs.random() }
 
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)) {
+    ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
             modifier = Modifier
                 .fillMaxSize()
+                .background(Color.White)
                 .padding(10.dp)
         ) {
-            TimeCounter()
+            TimeCounter(viewModel)
             AsyncImage(
                 model = ImageRequest
                     .Builder(context)
-                    .data("android.resource://${context.packageName}/${randomGif}")
+                    .data(randomGif)
                     .build(), contentDescription = "pokemon",
                 imageLoader = imageLoader,
                 modifier = Modifier
@@ -115,6 +89,8 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
                     .fillMaxWidth()
                     .padding(10.dp)
             )
+            if (viewModel.indicePreguntaActual>10){
+            navController.navigate(Routes.ResultScreen.route)}
 
             Box(
                 modifier = Modifier
@@ -133,17 +109,19 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
                         Button(
                             modifier = Modifier
                                 .padding(horizontal = 3.dp, vertical = 0.dp),
-                            onClick = { if (currentQuestion.respuesta1==currentQuestion.respuestaCorrecta) {
-                            viewModel.puntuacion++
-                        }
-                            if (viewModel.indicePreguntaActual==10){
-                                navController.navigate(Routes.ResultScreen.route)
-                            }
-                            else{
-                                viewModel.indicePreguntaActual++
-                            }
+                            onClick = {
+                                if (currentQuestion.respuesta1==currentQuestion.respuestaCorrecta) {
+                                    viewModel.puntuacion++
+                                }
+                                if (viewModel.indicePreguntaActual==10){
+                                    navController.navigate(Routes.ResultScreen.route)
+                                }
+                                else{
+                                    viewModel.indicePreguntaActual++
+                                }
 
-                        } ) {
+                            }
+                        ) {
                             Text(currentQuestion.respuesta1,
                                 fontSize = 17.sp,
                                 lineHeight = 40.sp
@@ -152,17 +130,19 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
                         Button(
                             modifier = Modifier
                                 .padding(horizontal = 3.dp, vertical = 0.dp),
-                            onClick = { if (currentQuestion.respuesta2==currentQuestion.respuestaCorrecta)
-                        {
-                            viewModel.puntuacion++
-                        }
-                            if (viewModel.indicePreguntaActual==10){
-                                navController.navigate(Routes.ResultScreen.route)
+                            onClick = {
+                                if (currentQuestion.respuesta2==currentQuestion.respuestaCorrecta)
+                                {
+                                    viewModel.puntuacion++
+                                }
+                                if (viewModel.indicePreguntaActual==10){
+                                    navController.navigate(Routes.ResultScreen.route)
+                                }
+                                else{
+                                    viewModel.indicePreguntaActual++
+                                }
                             }
-                            else{
-                                viewModel.indicePreguntaActual++
-                            }
-                        } ) {
+                        ) {
                             Text(currentQuestion.respuesta2,
                                 fontSize = 17.sp,
                                 lineHeight = 40.sp
@@ -177,40 +157,44 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
                         Button(
                             modifier = Modifier
                                 .padding(horizontal = 3.dp, vertical = 0.dp),
-                            onClick = { if (currentQuestion.respuesta3==currentQuestion.respuestaCorrecta)
-                        {
-                            viewModel.puntuacion++
-                        }
-                            if (viewModel.indicePreguntaActual==10){
-                                navController.navigate(Routes.ResultScreen.route)
+                            onClick = {
+                                if (currentQuestion.respuesta3==currentQuestion.respuestaCorrecta) {
+                                viewModel.puntuacion++
+                                }
+                                if (viewModel.indicePreguntaActual==10){
+                                    navController.navigate(Routes.ResultScreen.route)
+                                }
+                                else{
+                                    viewModel.indicePreguntaActual++
+                                }
                             }
-                            else{
-                                viewModel.indicePreguntaActual++
-                            }
-                        } ) {
+                        ) {
                             Text(currentQuestion.respuesta3,
                                 fontSize = 17.sp,
                                 lineHeight = 40.sp
-                                ) }
+                            )
+                        }
 
                         Button(
                             modifier = Modifier
                                 .padding(horizontal = 3.dp, vertical = 0.dp),
-                            onClick = { if (currentQuestion.respuesta4==currentQuestion.respuestaCorrecta)
-                        {
-                            viewModel.puntuacion++
-                        }
-                            if (viewModel.indicePreguntaActual==10){
-                                navController.navigate(Routes.ResultScreen.route)
+                            onClick = {
+                                if (currentQuestion.respuesta4==currentQuestion.respuestaCorrecta) {
+                                viewModel.puntuacion++
+                                }
+                                if (viewModel.indicePreguntaActual==10){
+                                    navController.navigate(Routes.ResultScreen.route)
+                                }
+                                else{
+                                    viewModel.indicePreguntaActual++
+                                }
                             }
-                            else{
-                                viewModel.indicePreguntaActual++
-                            }
-                        } ) {
+                        ) {
                             Text(currentQuestion.respuesta4,
                                 fontSize = 17.sp,
                                 lineHeight = 40.sp
-                                ) }
+                            )
+                        }
                     }
                 }
             }
@@ -219,33 +203,27 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
     }
 }
 @Composable
-fun TimeCounter() {
+fun TimeCounter(viewModel: GameViewModel) {
     var timeLeft by remember { mutableStateOf(10) }
-    LaunchedEffect(timeLeft) {
+    LaunchedEffect(viewModel.indicePreguntaActual) {
+        timeLeft = 10
         while (timeLeft > 0) {
             delay(1000L)
-            timeLeft -= 1 } }
+            timeLeft -= 1
+        }
+        if (timeLeft == 0) {
+            viewModel.indicePreguntaActual++
+        }
+    }
 
     Text(
-        text = if (timeLeft > 0) "$timeLeft" else "You have no time left",
+        text = "$timeLeft",
         color = Color.Black,
-        fontSize =(30.sp),
+        fontSize = (30.sp),
         modifier = Modifier
-            .padding(20.dp))
+            .padding(20.dp)
+    )
 }
 
-@Composable
-fun rememberGifImageLoader(): ImageLoader {
-    val context = LocalContext.current
-    return remember {
-        ImageLoader.Builder(context)
-            .components {
-                if (Build.VERSION.SDK_INT >= 28) {
-                    add(ImageDecoderDecoder.Factory())
-                } else {
-                    add(GifDecoder.Factory())
-                }
-            }
-            .build()
-    }
-}
+
+
