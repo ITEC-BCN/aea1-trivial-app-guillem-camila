@@ -34,6 +34,8 @@ import com.example.trivialapp_base.model.ProveedorPreguntas
 import com.example.trivialapp_base.viewmodel.GameViewModel
 import kotlinx.coroutines.delay
 import android.os.Build
+import android.widget.ProgressBar
+import androidx.compose.material3.LinearProgressIndicator
 import coil.request.ImageRequest
 import com.example.trivialapp_base.R
 import coil.decode.GifDecoder
@@ -44,8 +46,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
 fun GameScreen(navController: NavController, viewModel: GameViewModel) {
+    val questionList = ProveedorPreguntas.obtenerPreguntasDiff(viewModel.dificultadSeleccionada)
     val currentQuestion = remember(viewModel.indicePreguntaActual) {
-        ProveedorPreguntas.obtenerPreguntasDiff(viewModel.dificultadSeleccionada).random()
+        questionList[viewModel.indicePreguntaActual-1]
     }
     val context = LocalContext.current
     val imageLoader = remember {
@@ -196,6 +199,7 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
                             )
                         }
                     }
+                    LinearProgressIndicator(progress = {viewModel.indicePreguntaActual.toFloat()/10}, modifier = Modifier.fillMaxWidth())
                 }
             }
         }

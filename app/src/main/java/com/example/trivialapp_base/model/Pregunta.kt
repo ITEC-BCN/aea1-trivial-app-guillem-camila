@@ -23,12 +23,12 @@ object ProveedorPreguntas {
             Pregunta("¿Cuánta potencia base tiene erupción?", "Movimientos", "Facil", "100", "120", "150", "200", "150"),
             Pregunta("¿Cuál de estos pokemon no tiene la habilidad intimidación?", "Características", "Facil", "Incineroar", "Haxorus", "Luxray", "Mawile", "Haxorus"),
             Pregunta("¿Cuántos tipos Pokémon existen actualmente?", "Tabla de Tipos", "Facil", "16", "17", "18", "19", "18"),
-            Pregunta("¿Qué tipo es supereficaz contra el tipo Dragón?", "Tabla de Tipos", "Facil", "Hada", "Hielo", "Dragón", "Acero", "Hada"),
+            Pregunta("¿Qué tipo es supereficaz contra el tipo Dragón?", "Tabla de Tipos", "Facil", "Roca", "Fantasma", "Dragón", "Acero", "Dragón"),
             Pregunta("¿Cuál es el tipo principal de Gengar?", "Tabla de Tipos", "Facil", "Veneno", "Fantasma", "Psíquico", "Siniestro", "Fantasma"),
             Pregunta("¿Qué objeto cura 20 PS?", "Objetos", "Facil", "Poción", "Antídoto", "Revivir", "Carameloraro", "Poción"),
             Pregunta("¿Qué Pokémon es el nº 25 de la Pokédex?", "Pokédex", "Facil", "Pikachu", "Raichu", "Eevee", "Clefairy", "Pikachu"),
             Pregunta("¿Qué tipo es inmune al tipo Eléctrico?", "Tabla de Tipos", "Facil", "Roca", "Tierra", "Acero", "Dragón", "Tierra"),
-            Pregunta("¿Qué movimiento siempre golpea primero?", "Movimientos", "Facil", "Ataque Rápido", "Placaje", "Golpe Bajo", "Mofa", "Ataque Rápido"),
+            Pregunta("¿Qué movimiento suele golpear primero?", "Movimientos", "Facil", "Ataque Rápido", "Placaje", "Golpe Cabeza", "Onda Trueno", "Ataque Rápido"),
             //Medio
             Pregunta("¿Qué pokemon no tiene debilidades en la práctica?", "Tabla de Tipos", "Medio", "Rotom Ventilador", "Zoroark de Hisui", "Eelektross", "Spiritomb", "Eelektross"),
             Pregunta("¿Cuánto aumentan la potencia de los movimientos de su tipo los campos psíquico, eléctrico y de hierba?", "Movimientos", "Medio", "Un 10%", "Un 30%", "Un 50%", "Un 25%", "Un 30%"),
@@ -43,14 +43,14 @@ object ProveedorPreguntas {
             //Difícil
             Pregunta("¿Qué hace el tera estelar?", "Generaciones", "Dificil", "Potencia un movimiento de cada tipo una vez", "Cambia el tipo defensivo", "Hace que teraexplosión siempre haga supereficaz", "Potencia solo los movimientos de tipo estelar", "Potencia un movimiento de cada tipo una vez"),
             Pregunta("¿Qué pokemon de tipo bicho es el único que ha ganado el mundial?", "VGC", "Dificil", "Accelgor", "Volcarona", "Escavalier", "Scizor", "Escavalier"),
-            Pregunta("¿Qué habilidad ignora los cambios de estadísticas del rival?", "Habilidades", "Dificil", "Allanamiento", "Inconsciente", "Compensación", "Ignorante", "Inconsciente"),
-            Pregunta("¿Qué movimiento tiene prioridad +3?", "Movimientos", "Dificil", "Protección", "Finta", "Anticipo", "Sorpresa", "Protección"),
-            Pregunta("¿Qué Pokémon es inmune a Trampa Rocas?", "Competitivo", "Dificil", "Volcarona", "Talonflame", "Charizard", "Minior", "Minior"),
-            Pregunta("¿Qué objeto reduce el daño de ataques supereficaces?", "Objetos", "Dificil", "Baya Zidra", "Baya Chiri", "Chaleco Asalto", "Baya Debilidad", "Baya Debilidad"),
-            Pregunta("¿Qué clima potencia los movimientos de tipo Roca?", "Clima", "Dificil", "Tormenta Arena", "Granizo", "Sol", "Lluvia", "Tormenta Arena"),
-            Pregunta("¿Qué Pokémon aprende Danza Dragón por nivel?", "Movimientos", "Dificil", "Gyarados", "Salamence", "Dragonite", "Haxorus", "Gyarados"),
-            Pregunta("¿Qué Pokémon fue baneado de VGC 2015?", "VGC", "Dificil", "Mega Kangaskhan", "Mega Salamence", "Xerneas", "Groudon", "Mega Kangaskhan"),
-            Pregunta("¿Qué objeto bloquea los movimientos de estado?", "Objetos", "Dificil", "Banda Focus", "Gafas Elegidas", "Manto Espejo", "Baya Mental", "Baya Mental"),
+            Pregunta("¿Qué habilidad ignora los cambios de estadísticas del rival?", "Habilidades", "Dificil", "Allanamiento", "Inconsciente", "Compensación", "Ignorante", "Ignorante"),
+            Pregunta("¿Qué movimiento tiene prioridad +3?", "Movimientos", "Dificil", "Protección", "Finta", "Pico cañón", "Sorpresa", "Sorpresa"),
+            Pregunta("¿Qué Pokémon no recibe un 50% de la vida como daño de trampa rocas?", "Competitivo", "Dificil", "Volcarona", "Talonflame", "Charizard", "Minior", "Minior"),
+            Pregunta("¿Qué objeto reduce el daño de ataques supereficaces?", "Objetos", "Dificil", "Baya Zidra", "Baya Chiri", "Chaleco Asalto", "Baya Caoca", "Baya Caoca"),
+            Pregunta("¿Qué clima potencia la defensa especial de los pokemon de tipo Roca?", "Clima", "Dificil", "Tormenta Arena", "Granizo", "Sol", "Lluvia", "Tormenta Arena"),
+            Pregunta("¿Qué Pokémon aprende Danza Dragón por nivel?", "Movimientos", "Dificil", "Gyarados", "Salamence", "Drampa", "Dudunsparce", "Gyarados"),
+            Pregunta("¿Qué equipo se volvió popular en VGC 2017?", "VGC", "Dificil", "Big 6", "Fake PG", "Arubega Miraidon", "Weezing-Gigas", "Fake PG"),
+            Pregunta("¿Qué objeto bloquea los efectos de estado?", "Objetos", "Dificil", "Banda Focus", "Gafas Elegidas", "Hierba Mental", "Baya Ziuela", "Baya Ziuela"),
 
             )
     }
@@ -61,6 +61,7 @@ object ProveedorPreguntas {
                 preguntas.add(it)
             }
         }
-        return preguntas
+
+        return preguntas.shuffled().toMutableList()
     }
 }
