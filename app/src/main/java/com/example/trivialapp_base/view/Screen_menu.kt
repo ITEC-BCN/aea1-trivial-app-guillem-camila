@@ -48,7 +48,8 @@ import androidx.compose.ui.text.TextStyle
 fun MenuScreen(navController: NavController, viewModel: GameViewModel) {
     var expanded: Boolean by remember { mutableStateOf(false) }
     var difficulty: String by remember { mutableStateOf("") }
-
+    viewModel.indicePreguntaActual=1
+    viewModel.puntuacion=0
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -112,8 +113,8 @@ fun MenuScreen(navController: NavController, viewModel: GameViewModel) {
                     DropdownMenuItem(
                         text = { Text("Medium")},
                         onClick = {
-                            difficulty = "Media"
-                            viewModel.setDificultad("Media")}
+                            difficulty = "Medio"
+                            viewModel.setDificultad("Medio")}
                     )
                     DropdownMenuItem(
                         text = { Text("Hard")},

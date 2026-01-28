@@ -45,7 +45,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 @Composable
 fun GameScreen(navController: NavController, viewModel: GameViewModel) {
     val currentQuestion = remember(viewModel.indicePreguntaActual) {
-        ProveedorPreguntas.obtenerPreguntas().random()
+        ProveedorPreguntas.obtenerPreguntasDiff(viewModel.dificultadSeleccionada).random()
     }
     val context = LocalContext.current
     val imageLoader = remember {

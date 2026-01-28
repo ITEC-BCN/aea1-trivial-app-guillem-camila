@@ -1,5 +1,7 @@
 package com.example.trivialapp_base.model
 
+import androidx.lifecycle.viewmodel.compose.viewModel
+
 // Definición de la clase de datos Pregunta según requisitos
 data class Pregunta(
     val pregunta: String,
@@ -51,5 +53,14 @@ object ProveedorPreguntas {
             Pregunta("¿Qué objeto bloquea los movimientos de estado?", "Objetos", "Dificil", "Banda Focus", "Gafas Elegidas", "Manto Espejo", "Baya Mental", "Baya Mental"),
 
             )
+    }
+    fun obtenerPreguntasDiff(dificultad: String): MutableList<Pregunta> {
+        val preguntas = mutableListOf<Pregunta>()
+        obtenerPreguntas().forEach {
+            if (it.dificultad == dificultad){
+                preguntas.add(it)
+            }
+        }
+        return preguntas
     }
 }
