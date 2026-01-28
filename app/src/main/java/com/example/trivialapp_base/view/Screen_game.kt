@@ -95,7 +95,6 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
                 .padding(10.dp)
         ) {
             TimeCounter()
-
             AsyncImage(
                 model = ImageRequest
                     .Builder(context)
