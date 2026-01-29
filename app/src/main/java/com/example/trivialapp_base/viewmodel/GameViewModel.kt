@@ -1,6 +1,5 @@
 package com.example.trivialapp_base.viewmodel
 
-import android.R
 import android.os.CountDownTimer
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
@@ -18,7 +17,7 @@ class GameViewModel : ViewModel() {
     var preguntaActual by mutableStateOf<Pregunta?>(null)
         private set
 
-    var respuestasMezcladas by mutableStateOf<List<String>>(emptyList())
+    var preguntasMezcladas: List<Pregunta> = emptyList()
         private set
 
     var puntuacion by mutableIntStateOf(0)
@@ -72,17 +71,26 @@ class GameViewModel : ViewModel() {
     )
 
     fun setDificultad(dificultad: String) {
-        dificultadSeleccionada = dificultad // Sense .value!
+        dificultadSeleccionada = dificultad
     }
+
     fun iniciarJuego() {
-        preguntasPartida = ProveedorPreguntas.obtenerPreguntas()
+        preguntasMezcladas = ProveedorPreguntas.obtenerPreguntasDiff(dificultadSeleccionada).shuffled()
         indicePreguntaActual = 1
         puntuacion = 0
-
     }
 
-    private fun cargarSiguientePregunta() {
+
+    fun obtenerPreguntaActual(): Pregunta{
+        return preguntasMezcladas[indicePreguntaActual]
     }
+
+    private fun cargarSiguientePregunta()
+    {
+        indicePreguntaActual++
+    }
+
+
 
     fun responderPregunta(respuestaUsuario: String) {
     }

@@ -46,10 +46,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
 fun GameScreen(navController: NavController, viewModel: GameViewModel) {
-    val questionList = ProveedorPreguntas.obtenerPreguntasDiff(viewModel.dificultadSeleccionada)
     val currentQuestion = remember(viewModel.indicePreguntaActual) {
-        questionList[viewModel.indicePreguntaActual-1]
+        viewModel.obtenerPreguntaActual()
     }
+
     val context = LocalContext.current
     val imageLoader = remember {
         ImageLoader.Builder(context) .components {
@@ -92,7 +92,7 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
                     .fillMaxWidth()
                     .padding(10.dp)
             )
-            if (viewModel.indicePreguntaActual>10){
+            if (viewModel.indicePreguntaActual>=10){
             navController.navigate(Routes.ResultScreen.route)}
 
             Box(

@@ -1,6 +1,6 @@
 package com.example.trivialapp_base.model
 
-import androidx.lifecycle.viewmodel.compose.viewModel
+
 
 // Definición de la clase de datos Pregunta según requisitos
 data class Pregunta(
@@ -16,7 +16,7 @@ data class Pregunta(
 
 // Objeto para simular la base de datos local (Hardcoded)
 object ProveedorPreguntas {
-    fun obtenerPreguntas(): MutableList<Pregunta> {
+    fun obtenerPreguntas(dificultad: String): MutableList<Pregunta> {
         return mutableListOf(
             //Fácil
             Pregunta("¿Cuántos PP como máximo puede tener Hiperrayo?", "Movimientos", "Facil", "5", "16", "8", "10", "8"),
@@ -56,7 +56,7 @@ object ProveedorPreguntas {
     }
     fun obtenerPreguntasDiff(dificultad: String): MutableList<Pregunta> {
         val preguntas = mutableListOf<Pregunta>()
-        obtenerPreguntas().forEach {
+        obtenerPreguntas(dificultad).forEach {
             if (it.dificultad == dificultad){
                 preguntas.add(it)
             }
