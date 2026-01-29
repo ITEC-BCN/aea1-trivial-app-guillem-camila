@@ -57,6 +57,7 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
         } .build()
     }
 
+
     var randomGif = remember(viewModel.indicePreguntaActual) { viewModel.gifs.random() }
 
     Box(
