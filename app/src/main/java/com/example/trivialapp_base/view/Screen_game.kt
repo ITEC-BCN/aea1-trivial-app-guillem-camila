@@ -35,6 +35,7 @@ import com.example.trivialapp_base.viewmodel.GameViewModel
 import kotlinx.coroutines.delay
 import android.os.Build
 import android.widget.ProgressBar
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.LinearProgressIndicator
 import coil.request.ImageRequest
 import com.example.trivialapp_base.R
@@ -42,6 +43,7 @@ import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+
 
 
 @Composable
@@ -198,7 +200,14 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
                             )
                         }
                     }
-                    LinearProgressIndicator(progress = {viewModel.indicePreguntaActual.toFloat()/10}, modifier = Modifier.fillMaxWidth())
+                    LinearProgressIndicator(
+                        progress = {
+                            viewModel.indicePreguntaActual.toFloat()/10
+                        },
+                        modifier = Modifier
+                            .width(300.dp)
+                            .padding(20.dp)
+                    )
                 }
             }
         }

@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -42,6 +43,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.text.TextStyle
+import com.example.trivialapp_base.ui.theme.Purple40
 
 
 @Composable
@@ -92,8 +94,9 @@ fun MenuScreen(navController: NavController, viewModel: GameViewModel) {
                     textStyle = TextStyle(fontWeight = FontWeight.SemiBold),
                     modifier = Modifier
                         .clickable{expanded = true}
-                        .width(300.dp)
-                        .padding(horizontal = 30.dp, vertical = 20.dp)
+                        .width(260.dp)
+                        .height(95.dp)
+                        .padding(horizontal = 30.dp, vertical = 10.dp)
                         .border(width = 2.dp, color = Black, shape = RoundedCornerShape(size = 50.dp))
                 )
                 DropdownMenu(

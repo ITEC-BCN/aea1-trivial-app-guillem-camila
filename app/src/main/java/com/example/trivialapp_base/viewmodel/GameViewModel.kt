@@ -11,30 +11,15 @@ import com.example.trivialapp_base.model.Pregunta
 import com.example.trivialapp_base.model.ProveedorPreguntas
 
 class GameViewModel : ViewModel() {
-    private var preguntasPartida: List<Pregunta> = emptyList()
     var indicePreguntaActual by mutableIntStateOf(1)
-
-    var preguntaActual by mutableStateOf<Pregunta?>(null)
-        private set
 
     var preguntasMezcladas: List<Pregunta> = emptyList()
         private set
-
     var puntuacion by mutableIntStateOf(0)
-
-    var tiempoRestante by mutableFloatStateOf(100f)
-        private set
-
-    var juegoTerminado by mutableStateOf(false)
-        private set
 
     var dificultadSeleccionada by mutableStateOf("Facil")
         private set
-    var extract by mutableStateOf(false)
-        private set
-    var difficulty by mutableStateOf("")
-    private var timer: CountDownTimer? = null
-    val tiempoPorPregunta = 10L // 10 segons
+
     val gifs = listOf(
         com.example.trivialapp_base.R.raw.mesprit,
         com.example.trivialapp_base.R.raw.laprasgigantamax,
@@ -79,26 +64,8 @@ class GameViewModel : ViewModel() {
         indicePreguntaActual = 1
         puntuacion = 0
     }
-
-
     fun obtenerPreguntaActual(): Pregunta{
         return preguntasMezcladas[indicePreguntaActual-1]
-    }
-
-    private fun cargarSiguientePregunta()
-    {
-        indicePreguntaActual++
-    }
-
-
-
-    fun responderPregunta(respuestaUsuario: String) {
-    }
-
-    private fun avanzarRonda() {
-    }
-
-    private fun iniciarTimer() {
     }
 
     override fun onCleared() {
