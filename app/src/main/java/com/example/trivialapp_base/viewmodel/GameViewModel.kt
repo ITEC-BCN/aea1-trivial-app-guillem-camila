@@ -75,14 +75,14 @@ class GameViewModel : ViewModel() {
     }
 
     fun iniciarJuego() {
-        preguntasMezcladas = ProveedorPreguntas.obtenerPreguntasDiff(dificultadSeleccionada).shuffled()
+        preguntasMezcladas = ProveedorPreguntas.obtenerPreguntasDiff(dificultadSeleccionada)
         indicePreguntaActual = 1
         puntuacion = 0
     }
 
 
     fun obtenerPreguntaActual(): Pregunta{
-        return preguntasMezcladas[indicePreguntaActual]
+        return preguntasMezcladas[indicePreguntaActual-1]
     }
 
     private fun cargarSiguientePregunta()

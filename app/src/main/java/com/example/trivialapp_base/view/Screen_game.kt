@@ -93,8 +93,6 @@ fun GameScreen(navController: NavController, viewModel: GameViewModel) {
                     .fillMaxWidth()
                     .padding(10.dp)
             )
-            if (viewModel.indicePreguntaActual>=10){
-            navController.navigate(Routes.ResultScreen.route)}
 
             Box(
                 modifier = Modifier

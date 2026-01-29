@@ -41,7 +41,7 @@ object ProveedorPreguntas {
             Pregunta("¿Cuántos turnos dura Pantalla Luz?", "Movimientos", "Medio", "3", "5", "8", "10", "5"),
             Pregunta("¿Qué Pokémon legendario controla el tiempo?", "Legendarios", "Medio", "Dialga", "Palkia", "Giratina", "Arceus", "Dialga"),
             //Difícil
-            Pregunta("¿Qué hace el tera estelar?", "Generaciones", "Dificil", "Potencia un movimiento de cada tipo una vez", "Cambia el tipo defensivo", "Hace que teraexplosión siempre haga supereficaz", "Potencia solo los movimientos de tipo estelar", "Potencia un movimiento de cada tipo una vez"),
+            Pregunta("¿Qué hace el tera estelar?", "Generaciones", "Dificil", "Potencia un \nmovimiento\n de cada tipo", "Cambia el \ntipo defensivo", "Hace que \nteraexplosión\nhaga supereficaz", "Potencia los \nmovimientos\n estelares", "Potencia un movimiento de cada tipo una vez"),
             Pregunta("¿Qué pokemon de tipo bicho es el único que ha ganado el mundial?", "VGC", "Dificil", "Accelgor", "Volcarona", "Escavalier", "Scizor", "Escavalier"),
             Pregunta("¿Qué habilidad ignora los cambios de estadísticas del rival?", "Habilidades", "Dificil", "Allanamiento", "Inconsciente", "Compensación", "Ignorante", "Ignorante"),
             Pregunta("¿Qué movimiento tiene prioridad +3?", "Movimientos", "Dificil", "Protección", "Finta", "Pico cañón", "Sorpresa", "Sorpresa"),
