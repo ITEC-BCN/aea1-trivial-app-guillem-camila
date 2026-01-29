@@ -85,6 +85,7 @@ fun MenuScreen(navController: NavController, viewModel: GameViewModel) {
                         .size(380.dp)
                 )
 
+
                 OutlinedTextField(
                     value = difficulty,
                     onValueChange = {difficulty = it},
