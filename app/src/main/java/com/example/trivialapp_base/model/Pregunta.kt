@@ -32,7 +32,7 @@ object ProveedorPreguntas {
             //Medio
             Pregunta("¿Qué pokemon no tiene debilidades en la práctica?", "Tabla de Tipos", "Medio", "Rotom Ventilador", "Zoroark de Hisui", "Eelektross", "Spiritomb", "Eelektross"),
             Pregunta("¿Cuánto aumentan la potencia de los movimientos de su tipo los campos psíquico, eléctrico y de hierba?", "Movimientos", "Medio", "Un 10%", "Un 30%", "Un 50%", "Un 25%", "Un 30%"),
-            Pregunta("¿Qué grupo de pokemon no estaba en espada y escudo?", "Generaciones", "Medio", "Los Regi", "Los Ultraentes", "Arceus y Darkrai", "Los Iniciales de Séptima Generación", "Arceus y Darkrai"),
+            Pregunta("¿Qué grupo de pokemon no estaba en espada y escudo?", "Generaciones", "Medio", "Los Regi", "Los Ultraentes", "Arceus y Darkrai", "Los Iniciales de 7 Gen", "Arceus y Darkrai"),
             Pregunta("¿Cuál de estos pokemon no ha ganado ningún torneo oficial de VGC?", "VGC", "Medio", "Clefairy", "Eevee", "Pikachu", "Cottonee", "Pikachu"),
             Pregunta("¿Cuál de estos pokemon no evoluciona?", "Características", "Medio", "Carbink", "Dunsparce", "Poltchageist", "Sinistea", "Carbink"),
             Pregunta("¿Cuál de estos pokemon ha ganado más mundiales en VGC Masters Division?", "VGC", "Medio", "Cresselia", "Kyogre", "Heatran", "Urshifu", "Cresselia"),
@@ -41,7 +41,7 @@ object ProveedorPreguntas {
             Pregunta("¿Cuántos turnos dura Pantalla Luz?", "Movimientos", "Medio", "3", "5", "8", "10", "5"),
             Pregunta("¿Qué Pokémon legendario controla el tiempo?", "Legendarios", "Medio", "Dialga", "Palkia", "Giratina", "Arceus", "Dialga"),
             //Difícil
-            Pregunta("¿Qué hace el tera estelar?", "Generaciones", "Dificil", "Potencia un \nmovimiento\n de cada tipo", "Cambia el \ntipo defensivo", "Hace que \nteraexplosión\nhaga supereficaz", "Potencia los \nmovimientos\n estelares", "Potencia un movimiento de cada tipo una vez"),
+            Pregunta("¿Qué hace el tera estelar?", "Generaciones", "Dificil", "Potencia un \nmovimiento\n de cada tipo", "Cambia el \ntipo \ndefensivo", "Hace que \nteraexplosión\nhaga supereficaz", "Potencia los \nmovimientos\n estelares", "Potencia un movimiento de cada tipo una vez"),
             Pregunta("¿Qué pokemon de tipo bicho es el único que ha ganado el mundial?", "VGC", "Dificil", "Accelgor", "Volcarona", "Escavalier", "Scizor", "Escavalier"),
             Pregunta("¿Qué habilidad ignora los cambios de estadísticas del rival?", "Habilidades", "Dificil", "Allanamiento", "Inconsciente", "Compensación", "Ignorante", "Ignorante"),
             Pregunta("¿Qué movimiento tiene prioridad +3?", "Movimientos", "Dificil", "Protección", "Finta", "Pico cañón", "Sorpresa", "Sorpresa"),

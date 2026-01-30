@@ -8,6 +8,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -43,7 +44,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.text.TextStyle
-import com.example.trivialapp_base.ui.theme.Purple40
+
+
 
 
 @Composable
@@ -85,48 +87,94 @@ fun MenuScreen(navController: NavController, viewModel: GameViewModel) {
                         .size(380.dp)
                 )
 
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    contentAlignment = Alignment.Center
 
-                OutlinedTextField(
-                    value = difficulty,
-                    onValueChange = {difficulty = it},
-                    enabled = false,
-                    readOnly = true,
-                    label = { Text(text = "Difficulty") },
-                    textStyle = TextStyle(fontWeight = FontWeight.SemiBold),
-                    modifier = Modifier
-                        .clickable{expanded = true}
-                        .width(260.dp)
-                        .height(95.dp)
-                        .padding(horizontal = 30.dp, vertical = 10.dp)
-                        .border(width = 2.dp, color = Black, shape = RoundedCornerShape(size = 50.dp))
-                )
-                DropdownMenu(
-                    expanded = expanded,
-                    onDismissRequest = { expanded = false },
-                    modifier = Modifier
-                        .width(300.dp)
-                        .padding(5.dp)
-                ) {
-                    DropdownMenuItem(
-                        text = { Text("Easy") },
-                        onClick = {
-                            difficulty = "Facil"
-                            viewModel.setDificultad("Facil")
-                        },
-                    )
-                    DropdownMenuItem(
-                        text = { Text("Medium")},
-                        onClick = {
-                            difficulty = "Medio"
-                            viewModel.setDificultad("Medio")}
-                    )
-                    DropdownMenuItem(
-                        text = { Text("Hard")},
-                        onClick = {
-                            difficulty = "Dificil"
-                            viewModel.setDificultad("Dificil")}
-                    )
+                ){
+                    Button(
+                        onClick = { expanded = true },
+                        modifier = Modifier
+                            .width(200.dp)
+                            .height(70.dp)
+                            .padding(10.dp),
+                        shape = RoundedCornerShape(50.dp)
+                    ) {
+                        Text(
+                            text = difficulty,
+                            color = Color.White,
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                    }
+                    DropdownMenu(
+                        expanded = expanded,
+                        onDismissRequest = { expanded = false },
+                        modifier = Modifier
+                            .width(200.dp)
+                            .padding(5.dp)
+                    ) {
+                        DropdownMenuItem(
+                            text = {
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.Center
+                                ){
+                                    Text(
+                                        "Easy",
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                }
+                            },
+                            onClick = {
+                                difficulty = "Facil"
+                                viewModel.setDificultad("Facil")
+                                expanded = false
+                            },
+                        )
+                        DropdownMenuItem(
+                            text = {
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.Center
+                                ){
+                                    Text(
+                                        "Medium",
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                }
+                            },
+                            onClick = {
+                                difficulty = "Medio"
+                                viewModel.setDificultad("Medio")
+                                expanded = false
+                            }
+                        )
+                        DropdownMenuItem(
+                            text = {
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.Center
+                                ){
+                                    Text(
+                                        "Hard",
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                }
+                            },
+                            onClick = {
+                                difficulty = "Dificil"
+                                viewModel.setDificultad("Dificil")
+                                expanded = false
+                            }
+                        )
+                    }
                 }
+
 
                 Button(
                     onClick = {
